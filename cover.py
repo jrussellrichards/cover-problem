@@ -52,7 +52,7 @@ if __name__ == "__main__":
         4:[0,0,0,0,0,0,1]
         }
     solucion=set_cover(centros,clientes)
-    print("Los centros a utilizar son: "solucion)
+    print("Los centros a utilizar son: ",solucion)
     
     
     
