@@ -26,19 +26,19 @@ def set_cover(centros,clientes):
     # zeros=np.zeros(len(clientes))
 
     while(len(clientes) > 0 and len(centros) > 0): #Mientras queden clientes por servir o existan centros se ejecutará el prgorama
-        print("clientes a servir: ",clientes)
-        print("los centros actuales son: ",centros)
+        # print("clientes a servir: ",clientes)
+        # print("los centros actuales son: ",centros)
         max_cover=max(centros,key = lambda i: covertura(centros[i])) #Se escoge el que tenga mayor cobertura
         # if(centros[max_cover]==list(zeros)): #Si el que estoy añadiendo no cubre ningun cliente, entonces detengo el programa
         #     break       
         centros_utilizados.append(max_cover) #Añado a mi solucion el centro escogido
-        print("El que cubre la mayor cantidad es",max_cover) 
+        # print("El que cubre la mayor cantidad es",max_cover) 
         clientes_a_eliminar=clientes_servidos(centros[max_cover]) #Son los clientes que fueron servidor por el centro utilizado
-        print("Todos estos clientes fueron servidos",clientes_a_eliminar)    
+        # print("Todos estos clientes fueron servidos",clientes_a_eliminar)    
         centros.pop(max_cover)#Se elimina el centro utilizado para recalcular con los restantes     
         centros=generar_matriz(clientes_a_eliminar,centros)#Creo nuevamente la matriz de cobertura con los clientes y centros restantes
         clientes = list(filter(lambda x: x not in clientes_a_eliminar, clientes))#Los nuevos clientes a servir son los clientes totales menos los clientes servidos
-        print("\n")
+        # print("\n")
     return centros_utilizados
         
 
