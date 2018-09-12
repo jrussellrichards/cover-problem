@@ -23,16 +23,16 @@ def clientes_servidos(centro):
 
 def ciudad_menor_cobertura(centros):
     ciudades=[]
-    max_count=0
+    min_count=999
     for ciudad in range(len(centros)):
         count=0
         for centro in centros:
             count+=centros[centro][ciudad]
-        if(count>max_count):
-            max_count=count
+        if(count<min_count):
+            min_count=count
             ciudades=[]
             ciudades.append(ciudad)
-        elif(count == max_count):
+        elif(count == min_count):
             ciudades.append(ciudad)
 
     print(ciudades)
