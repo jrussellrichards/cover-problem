@@ -21,6 +21,25 @@ def clientes_servidos(centro):
             clientes.append(posicion)
     return clientes
 
+def ciudad_menor_cobertura(centros):
+    ciudades=[]
+    max_count=0
+    for ciudad in range(len(centros)):
+        count=0
+        for centro in centros:
+            count+=centros[centro][ciudad]
+        if(count>max_count):
+            max_count=count
+            ciudades=[]
+            ciudades.append(ciudad)
+        elif(count == max_count):
+            ciudades.append(ciudad)
+
+    print(ciudades)
+    return ciudades
+        
+
+
 def set_cover(centros,clientes):
     centros_utilizados=[]
     # zeros=np.zeros(len(clientes))
@@ -82,8 +101,8 @@ if __name__ == "__main__":
 
 
         }
-    solucion=set_cover(centros,clientes)
-    print("Los centros a utilizar son: ",solucion)
-    
-    
+    # solucion=set_cover(centros,clientes)
+    # print("Los centros a utilizar son: ",solucion)
+    city=ciudad_menor_cobertura(centros)
+    print(city)
   
