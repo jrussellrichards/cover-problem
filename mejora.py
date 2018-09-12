@@ -24,19 +24,26 @@ def clientes_servidos(centro):
 def ciudad_menor_cobertura(centros):
     ciudades=[]
     min_count=999
-    for ciudad in range(len(centros)):
+    for ciudad in range(30):
+        print("ciudad",ciudad)
         count=0
         for centro in centros:
-            count+=centros[centro][ciudad]
-        if(count<min_count):
+            if(centros[centro][ciudad] == 1):
+                count+=1
+        if(count<min_count and count!=0):
             min_count=count
             ciudades=[]
             ciudades.append(ciudad)
         elif(count == min_count):
             ciudades.append(ciudad)
+        
+            
 
-    print(ciudades)
-    return ciudades
+    centros_escogidos={}
+
+    for ciudad in ciudades:
+        centros_escogidos[ciudad+1]=centros[ciudad+1]
+    return centros_escogidos
         
 
 
@@ -47,7 +54,11 @@ def set_cover(centros,clientes):
     while(len(clientes) > 0 and len(centros) > 0): #Mientras queden clientes por servir o existan centros se ejecutará el prgorama
         print("clientes a servir: ",clientes)
         print("los centros actuales son: ",centros)
-        max_cover=max(centros,key = lambda i: covertura(centros[i])) #Se escoge el que tenga mayor cobertura
+        ciudades_candidatas=ciudad_menor_cobertura(centros)
+        print("ciudades",ciudades_candidatas)
+        if(ciudades_candidatas=={}):
+            break
+        max_cover=max(ciudades_candidatas,key = lambda i: covertura(centros[i])) #Se escoge el que tenga mayor cobertura
         # if(centros[max_cover]==list(zeros)): #Si el que estoy añadiendo no cubre ningun cliente, entonces detengo el programa
         #     break       
         centros_utilizados.append(max_cover) #Añado a mi solucion el centro escogido
@@ -99,10 +110,10 @@ if __name__ == "__main__":
 	   29:[0,0,1,0,0,0,0,0,1,1,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0],
 	   30:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1]
 
-
         }
-    # solucion=set_cover(centros,clientes)
-    # print("Los centros a utilizar son: ",solucion)
-    city=ciudad_menor_cobertura(centros)
-    print(city)
+    solucion=set_cover(centros,clientes)
+    print("Los centros a utilizar son: ",solucion)
+    print(centros)
+    # city=ciudad_menor_cobertura(centros)
+    # print(city)
   
